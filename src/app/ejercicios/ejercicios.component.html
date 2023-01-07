@@ -1,0 +1,53 @@
+<h1 [ngStyle]="{'letter-spacing':'2px'}" class="text-primary text-center mt-5 fw-bold">Sesion 13</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="container mt-3 p-4 border border-info">
+                <h2 class="text-info text-center">USO DE PIPES</h2>
+                <label class="form-label" for="">Valor</label>
+                <input class="form-control" type="text" [(ngModel)]="valor" />
+              
+                <p class="mt-3 text-center">Resultado {{ valor | uppercase }}</p>
+              </div>
+        </div>
+
+        <div class="col">
+            <div class="container mt-3 p-4 border border-info">
+                <h2 class="text-info text-center">CURRENCY PIPES</h2>
+                <label class="form-label" for="">Valor</label>
+                <input class="form-control mb-3" type="number" [(ngModel)]="moneda" />
+                
+                <select [(ngModel)]="num" class="form-select mb-3">
+                    <option value="Elige una opción">Seleccione el tipo de moneda</option>
+                    <option value="1">USD</option>
+                    <option value="2">EUR</option>
+                  </select>
+                  <!-- Select -->
+                  <div  [ngSwitch]="num">
+                    <div [ngStyle]="{'color':'blue','font-weight':'bolder'}" *ngSwitchCase="1">USD : <span [ngStyle]="{'font-weight':'400'}">{{moneda | currency:'USD'}}</span></div>
+                    <div [ngStyle]="{'color':'blue','font-weight':'bolder'}" *ngSwitchCase="2">EUR : <span [ngStyle]="{'font-weight':'400'}">{{moneda | currency:'EUR'}}</span></div>
+                    <div [ngStyle]="{'color':'red'}" *ngSwitchDefault>{{error}}</div> 
+                  </div>
+              </div>
+        </div>
+
+        <div class="col">
+            <div class="container mt-3 p-4 border border-info mb-5">
+                <h2 class="text-info text-center">Ejercicios 03</h2>
+            
+                <label for="" class="form-label mb-3">Ingrese Mes, Dia, Año, Hora: </label>
+                <input type="text" class="form-control mb-4" [(ngModel)]="fecha" placeholder="Mes/Dia/Año y hora">
+            
+                <div class="mb-3 text-center">
+                    <button (click)="calcular()" class="btn btn-info text-white">Calcula el Tiempo</button>
+                </div>          
+            
+                <p>Fecha Actual: {{fa | date:'shortDate'}}</p>
+            
+                <p>Resultado - Fecha: {{fecha | date: 'medium'}}</p>
+            
+                <p>FINAL: {{tiempo}}</p>
+              </div>
+        </div>
+    </div>
+</div>
